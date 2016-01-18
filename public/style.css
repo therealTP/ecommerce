@@ -1,0 +1,18 @@
+header {
+  background-color: #d3d3d3;
+  height: 75px;
+  margin: 0 -15px;
+  padding: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header h2, header h4 {
+  margin: 0;
+}
+
+.grid {
+  height: 50px;
+}

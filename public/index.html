@@ -1,0 +1,38 @@
+<html ng-app="eComm">
+  <head>
+    <title>eCommerce Site</title>
+    <!--To browser, site optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--Import Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!--import UI grid CSS-->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css" media="screen" title="no title" charset="utf-8">
+    <!-- Import compiled, final CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body>
+
+    <ui-view>
+      <!-- each state/view's content will go here -->
+    </ui-view>
+
+    <!--Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <!--Angular UI Router-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+    <!--Angular UI bootstrap w/ templates-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.0.3/ui-bootstrap-tpls.min.js">
+    </script>
+    <!--Angular UI grid-->
+    <script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"> </script>
+    <!--Angular Animate-->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+    <!--internal JS files -->
+    <script src="./app.js"></script>
+    <script src="services/dbSvc.js"></script>
+    <script src="routes/main/mainCtrl.js"></script>
+    <script src="routes/admin/adminCtrl.js"></script>
+  </body>
+</html>
