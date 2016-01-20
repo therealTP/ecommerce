@@ -6,5 +6,28 @@
       <a ui-sref="main">Main</a> - <a ui-sref="admin">Admin</a>
     </div>
   </header>
-  <h4>ADMIN STUFF HERE</h4>
+  <form action="" class="new-product row form-inline">
+    <h4>Add New Product:</h4>
+    <div class="form-group">
+      <label for="">Name</label>
+      <input ng-model="newProduct.name" type="text" placeholder="Name">
+    </div>
+    <div class="form-group">
+      <label for="">Description</label>
+      <input ng-model="newProduct.description" type="text" placeholder="Description">
+    </div>
+    <div class="form-group">
+      <label for="">Category</label>
+      <select ng-model="newProduct.category" class="" name="">
+        <option ng-repeat="category in productCategories" ng-value="category">{{category}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="">Price</label>
+      <input ng-model="newProduct.price" type="text">
+    </div>
+    <button ng-click="addProduct(newProduct)" type="button" class="btn" name="button">Add</button>
+
+  </form>
+  {{newProduct}}
 </div>

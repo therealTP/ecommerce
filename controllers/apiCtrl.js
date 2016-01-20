@@ -1,54 +1,47 @@
-var mongojs = require('mongojs');
-var db = mongojs('ecommerce', ['products']);
-var ObjectId = require('mongodb').ObjectId;
+var productModel = require('./../models/ProductModel');
 
 module.exports = {
-  index: function(req, res, next) {
-    db.products.find({}, function(err, result) {
+  index: function(req, res) {
+    productModel.find(req.query, function(err, result) {
       if (err) {
-        res.sendStatus(500, "Error, or no records found.");
+        res.sendStatus(500, err);
       }
       res.send(result);
     });
   },
-  find: function(req, res, next) {
-    var idToFind = ObjectId(req.params.id);
-    db.products.find({"_id": idToFind}, function(err, result) {
-      if (err || result.n === 0) {
-        res.sendStatus(404, "record not found");
+  find: function(req, res) {
+    console.log(req.params.id);
+    productModel.findById(req.params.id, function(err, result) {
+      if (err) {
+        res.sendStatus(404, err);
       }
       res.send(result);
     });
   },
-  create: function(req, res, next) {
-    db.products.insert(req.body, function(err, result){
+  create: function(req, res) {
+    var product = new productModel(req.body);
+    product.save(function(err, result){
       if (err) {
-        res.sendStatus(500);
+        res.sendStatus(500, err);
       }
       res.send(result);
     });
   },
-  update: function(req, res, next) {
-    var idToUpdate = ObjectId(req.params.id);
-    var updateObj = {
-      query: {_id: idToUpdate},
-      update: {$set: req.body}, // this just updates, doesn't overwrite
-      new: false
-    };
-    db.products.findAndModify(updateObj, function(err, result) {
+  update: function(req, res) {
+    // var options = {new: false}; // this is default, no need to specify
+    // also default of $set when passing body
+    productModel.findByIdAndUpdate(req.params.id, req.body, function(err, result) {
       if (err) {
-        res.sendStatus(500);
-      } else if (result.n === 0) {
-        res.sendStatus(404, "record not found");
+        res.sendStatus(500, err);
       }
       res.send(result);
     });
   },
-  destroy: function(req, res, next) {
-    var idToDelete = ObjectId(req.params.id);
-    db.products.remove({"_id": idToDelete}, function(err, result) {
+  destroy: function(req, res) {
+    console.log(req.params.id);
+    productModel.findByIdAndRemove(req.params.id, function(err, result) {
       if (err) {
-        res.sendStatus(500);
+        res.status(500).send(err);
       }
       res.send(result);
     });

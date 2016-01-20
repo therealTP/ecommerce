@@ -9,10 +9,15 @@ header {
   justify-content: space-between;
 }
 
-header h2, header h4 {
-  margin: 0;
-}
+  header h2, header h4 {
+    margin: 0;
+  }
 
 .grid {
   height: 50px;
+}
+
+/*admin page*/
+form.new-product {
+  margin-left: 25px;
 }
