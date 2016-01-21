@@ -1,8 +1,8 @@
-var productModel = require('./../models/ProductModel');
+var Product = require('./../models/ProductModel');
 
 module.exports = {
   index: function(req, res) {
-    productModel.find(req.query, function(err, result) {
+    Product.find(req.query, function(err, result) {
       if (err) {
         res.sendStatus(500, err);
       }
@@ -11,7 +11,7 @@ module.exports = {
   },
   find: function(req, res) {
     console.log(req.params.id);
-    productModel.findById(req.params.id, function(err, result) {
+    Product.findById(req.params.id, function(err, result) {
       if (err) {
         res.sendStatus(404, err);
       }
@@ -19,7 +19,7 @@ module.exports = {
     });
   },
   create: function(req, res) {
-    var product = new productModel(req.body);
+    var product = new Product(req.body);
     product.save(function(err, result){
       if (err) {
         res.sendStatus(500, err);
@@ -30,7 +30,7 @@ module.exports = {
   update: function(req, res) {
     // var options = {new: false}; // this is default, no need to specify
     // also default of $set when passing body
-    productModel.findByIdAndUpdate(req.params.id, req.body, function(err, result) {
+    Product.findByIdAndUpdate(req.params.id, req.body, function(err, result) {
       if (err) {
         res.sendStatus(500, err);
       }
@@ -39,7 +39,7 @@ module.exports = {
   },
   destroy: function(req, res) {
     console.log(req.params.id);
-    productModel.findByIdAndRemove(req.params.id, function(err, result) {
+    Product.findByIdAndRemove(req.params.id, function(err, result) {
       if (err) {
         res.status(500).send(err);
       }
